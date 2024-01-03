@@ -1,18 +1,18 @@
 <template>
-  <!-- <BeeStue />
-  <HelloWorld /> -->
+  <!-- <BeeStue /> -->
+  <HelloWorld />
   <GiftBoxes/>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/HelloWorld.vue'
 // import BeeStue from './components/Bee.vue'
 import GiftBoxes from './components/GiftBoxes.vue'
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld,
+    HelloWorld,
     // BeeStue,
     GiftBoxes
   }

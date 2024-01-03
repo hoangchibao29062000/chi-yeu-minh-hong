@@ -1,259 +1,132 @@
 <template>
-    <div class="birthday-gift">
-        <div class="gift">
-            <input id='click' type='checkbox'>
-            <label class='click' for='click'></label>
-            <div class="wishes">Happy Birthday!</div>
-            <div class="sparkles">
-                <div class="spark1"></div>
-                <div class="spark2"></div>
-                <div class="spark3"></div>
-                <div class="spark4"></div>
-                <div class="spark5"></div>
-                <div class="spark6"></div>
-            </div>
-        </div>
-    </div>
+  <div class="wrapper" id="textILoveYou">
+    <input type="checkbox" id="ck1" />
+    <label for="ck1">Bảo</label>
+    <input type="checkbox" id="ck2" />
+    <label for="ck2">Yêu</label>
+    <input type="checkbox" id="ck3" />
+    <label for="ck3">Hồng</label>
+  </div>
+
+  <span>Bấm vào tất cả chữ</span>
 </template>
   
 <script>
-// import setTime from "../configs/settime";
+import setTime from "../configs/settime";
 export default {
-    name: 'GiftBoxes',
+  name: 'GiftBoxes',
+  mounted() {
+    document.getElementById("textILoveYou").style.display = "none"
+    setTimeout(() => {
+      document.getElementById("textILoveYou").style.display = "flex"
+    }, setTime.intro);
+  },
 }
 </script>
 <style scoped>
+@import url(https://fonts.googleapis.com/css?family=Shadows+Into+Light);
+
+html {
+  display: table;
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+}
+
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  display: table-cell;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  font-family: 'Shadows Into Light';
+  color: #111;
 }
 
-.birthday-gift {
+.wrapper {
+  width: 500px;
+  height: 500px;
   position: relative;
+  margin: 0 auto;
 }
 
-.birthday-gift:before {
-  content:"";
-  position: absolute;
-  width: 170px;
-  height:20px;
-  border-radius:50%;
-  background-color: rgba(0,0,0,0.4);
-  top:90px;
-  left:-10px;
-}
-
-input#click {
+input[type="checkbox"] {
   display: none;
 }
 
-.gift {
-  position: relative;
-  width: 150px;
+input[type="checkbox"]+label {
+  width: 100px;
   height: 100px;
-  background-color: #e9c46a;
+  line-height: 100px;
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+  font-size: 100px;
+  transition: all 1s ease;
 }
 
-.gift:before {
-  content:"";
-  position: absolute;
-  width: 25px;
-  height: 100px;
-  background-color: #e76f51;
-  left:62px;
+label {
+  text-shadow: 8px 8px 30px rgba(0, 0, 0, 0.5);
 }
 
-.gift:after {
-  content:"";
-  position: absolute;
-  box-shadow: inset 0 10px rgba(0,0,0,0.3);
-  width: 150px;
-  height: 100px;
-}
-
-.click {
-  position: absolute;
-  background-color: #e9c46a;
-  width: 170px;
-  height: 40px;
-  top:-40px;
-  left:-10px;
-  transform-origin: bottom left;
-  transition: .3s;
+label:hover {
+  color: #c32a2a;
   cursor: pointer;
 }
 
-.click:before {
-  content:"";
-  position: absolute;
-  width: 25px;
-  height: 40px;
-  background-color: #e76f51;
-  left:69px;
+#ck1+label,
+#ck2+label {
+  border-radius: 50px;
+  top: 0;
 }
 
-.click:after {
-  content:"";
-  position: absolute;
-  width: 5px;
-  height: 0;
-  border-bottom: 30px solid #e76f51;
-  border-top: 30px solid #e76f51;
-  border-left: 0px solid transparent;
-  border-right: 30px solid transparent;
-  transform: rotate(-90deg);
-  left:65px;
-  top:-47px;
+#ck1:checked+label,
+#ck2:checked+label,
+#ck3:checked+label {
+  background: #c32a2a;
+  font-size: 0;
+  transition: all 1s ease;
 }
 
-#click:checked + .click {
-  transform: rotate(-110deg) scaleX(0.85);
+#ck1:checked+label,
+#ck2:checked+label {
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
+  line-height: 300px;
 }
 
-.wishes {
-  position: absolute;
-  transition: .5s;
-  color: #333;
-  font-size: 37px;
+#ck1+label {
+  left: 0;
+}
+
+#ck2+label {
+  right: 0;
+}
+
+#ck3+label {
+  bottom: 0;
+  left: 50%;
+  margin: 0 -50px;
+}
+
+#ck3:checked+label {
+  width: 275px;
+  height: 275px;
+  bottom: 96px;
+  left: 162px;
+  transform: rotate(45deg);
+  line-height: 27px;
+}
+
+span {
+  display: inline-block;
   text-align: center;
-  z-index:-1;
-  left:5px;
-}
-
-#click:checked ~ .wishes {
-  transform: translateY(-100px);
-}
-
-#click:checked ~ .sparkles {
-  display: block;
-}
-
-
-
-.sparkles {
   position: absolute;
-  display: none;
-  top:-15px;
-  z-index:-2;
-  left:40px;
-}
-
-.spark1, .spark2, .spark3, .spark4, .spark5, .spark6 {
-  position: absolute;
-  background-color: #fee440;
-  border-radius:50%;
-  top:-9px;
-  z-index:-1;
-}
-
-.spark1 {
-  width: 8px;
-  height:8px;
-  left:30px;
-  top:-9px;
-  animation: fire 0.9s ease-in-out infinite, color 0.4s linear infinite;
-}
-
-.spark1:before {
-  content:"";
-  position: absolute;
-  width:5px;
-  height:5px;
-  top:8px;
-  left:11px;
-  background-color: #fee440;
-  border-radius:50%;
-}
-
-.spark2 {
-  width: 9px;
-  height:9px;
-  left:33px;
-  top:-5px;
-  animation: fire2 0.28s ease-in-out infinite, color 0.4s linear infinite;
-}
-
-.spark2:before {
-  content:"";
-  position: absolute;
-  width:5px;
-  height:5px;
-  top:12px;
-  left:3px;
-  background-color: #fee440;
-  border-radius:50%;
-}
-
-.spark3 {
-  width: 8.5px;
-  height:8.5px;
-  left:33px;
-  top:-5px;
-  animation: fire3 0.36s ease-in-out infinite, color2 0.4s linear infinite;
-}
-
-.spark3:before {
-  content:"";
-  position: absolute;
-  width:5px;
-  height:5px;
-  top:12px;
-  left:-1px;
-  background-color: #fee440;
-  border-radius:50%;
-}
-
-.spark4 {
-  width: 7px;
-  height:7px;
-  left:27px;
-  top:-5px;
-  animation: fire2 0.24s ease-in-out infinite, color2 0.2s linear infinite;
-}
-
-.spark5 {
-  width: 7px;
-  height:7px;
-  left:29px;
-  top:-5px;
-  animation: fire3 0.45s ease-in-out infinite, color 0.2s linear infinite;
-}
-
-.spark6 {
-  width: 6px;
-  height:6px;
-  left:29px;
-  top:-5px;
-  animation: fire 0.35s ease-in-out infinite, color2 0.2s linear infinite;
-}
-  
-@keyframes fire3 {
-  100% { transform:translateX(20px) translateY(-93px); 
-         opacity: 0.3; }
-}
-
-@keyframes fire2 {
-  100% { transform:translateX(-5px) translateY(-90px); 
-         opacity: 0.3; }
-}
-
-@keyframes fire {
-  100% { transform:translateX(-25px) translateY(-95px); 
-         opacity: 0.3; }
-}
-
-@keyframes color {
-  from {background-color: #d00000;}
-  to {background-color: #0081a7;}
-}
-
-@keyframes color2 {
-  from {background-color: #8cff00;}
-  to {background-color: #1d2d44;}
-}
-
-
-</style>
+  bottom: 10px;
+  left: 50%;
+  margin-left: -100px;
+  width: 200px;
+  font-size: 24px;
+  color: #999;
+}</style>
   
